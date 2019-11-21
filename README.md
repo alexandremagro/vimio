@@ -4,6 +4,13 @@ Vimio is a video-sharing platform.
 
 ## Getting Started
 
+### Configuration
+
+Create a `.env` file in root and set following variables:
+
+- DATABASE_USERNAME
+- DATABASE_PASSWORD
+
 ### Prerequisites
 
 - RVM
