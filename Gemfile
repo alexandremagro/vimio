@@ -25,6 +25,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# Devise is a authentication gem
+gem 'devise'
+
+# Rails forms made easy.
+gem 'simple_form'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -34,6 +40,9 @@ group :development, :test do
 
   # Load environment variables from `.env`.
   gem 'dotenv-rails'
+
+  # A runtime developer console and IRB alternative with powerful introspection capabilities.
+  gem 'pry-rails'
 end
 
 group :development do

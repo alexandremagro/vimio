@@ -1,0 +1,15 @@
+<div id="page-alerts" class="page-alerts">
+  <% flash.each do |type, msg| %>
+    <div class="page-alert
+                alert
+                <%= bootstrap_class_for_flash(type) %>
+                alert-dismissable
+                shadow
+                fade
+                show"
+                data-dismiss="alert"
+      >
+      <%= msg %>
+    </div>
+  <% end %>
+</div>

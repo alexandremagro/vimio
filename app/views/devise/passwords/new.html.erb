@@ -1,0 +1,20 @@
+<% content_for :breadcrumb do %>
+  <%= breadcrumb_item "Sign in", new_session_path(resource_name) %>
+  <%= breadcrumb_item "Forgot your password?" %>
+<% end %>
+
+<h2>Forgot your password?</h2>
+<p class="text-muted">
+  You will receive an email with instructions to reset your password.
+</p>
+<div class="container-sm">
+  <%= simple_form_for(resource,
+                      as: resource_name,
+                      url: password_path(resource_name),
+                      html: { method: :post }) do |f| %>
+  <%= f.input :email %>
+  <%= f.button :submit,
+               "Reset password",
+               class: 'btn-primary' %>
+  <% end %>
+</div>

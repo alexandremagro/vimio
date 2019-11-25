@@ -1,0 +1,28 @@
+<% content_for :body_class, 'bg-light' %>
+<% content_for :content do %>
+  <%= render 'layouts/alerts' %>
+
+  <main class="container my-5">
+    <!-- breadcrumbs -->
+    <% if content_for? :breadcrumb %>
+    <ol class="breadcrumb">
+      <%= yield :breadcrumb %>
+    </ol>
+    <% end %>
+
+    <!-- main content -->
+    <main class="card">
+      <% if content_for? :card_header %>
+        <div class="card-header">
+          <%= yield :card_header %>
+        </div>
+      <% end %>
+
+      <div class="card-body">
+        <%= yield %>
+      </div>
+    </main>
+  </main>
+<% end %>
+
+<%= render template: "layouts/application" %>

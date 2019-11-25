@@ -1,0 +1,8 @@
+<% content_for :content do %>
+  <%= render 'layouts/alerts' %>
+  <main>
+    <%= yield %>
+  </main>
+<% end %>
+
+<%= render template: "layouts/application" %>

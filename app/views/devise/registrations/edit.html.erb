@@ -1,0 +1,61 @@
+<% content_for :card_header do %>
+  <ul class="nav nav-tabs card-header-tabs" role="tablist">
+    <li class="nav-item">
+      <%= link_to "Edit profile",
+                  '#profile',
+                  class: "nav-link active",
+                  data: { toggle: "tab" },
+                  role: "tab" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Cancel account",
+                  '#cancel_account',
+                  class: "nav-link",
+                  data: { toggle: "tab" },
+                  role: "tab" %>
+    </li>
+  </ul>
+<% end %>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="profile" role="tabpanel">
+    <h2>Edit Profile</h2>
+
+    <div class="container-sm">
+      <%= simple_form_for(resource,
+                          as: resource_name,
+                          url: registration_path(resource_name),
+                          html: { method: :put }) do |f| %>
+
+        <%= f.input :name %>
+        <%= f.input :birthdate,
+                    start_year: Date.today.year - 120,
+                    end_year: Date.today.year,
+                    order: [:month, :day, :year] %>
+        <%= f.input :gender, as: :radio_buttons, collection: gender_options %>
+
+        <hr class="my-4"/>
+
+        <%= f.input :email %>
+        <%= f.input :password, hint: "Leave blank if you don't want to change it" %>
+        <%= f.input :password_confirmation %>
+
+        <hr class="my-4"/>
+
+        <%= f.input :current_password, hint: "We need your current password to confirm your changes" %>
+        <%= f.button :submit, "Save changes", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="cancel_account" role="tabpanel">
+    <h2>Cancel my account</h2>
+    <p class="text-muted">Unhappy? We'll miss you... (っ- ‸ – ς)</p>
+
+    <%= button_to "Cancel my account",
+                  registration_path(resource_name),
+                  class: "btn btn-danger",
+                  data: { confirm: "Are you sure?" },
+                  method: :delete %>
+  </div>
+</div>
