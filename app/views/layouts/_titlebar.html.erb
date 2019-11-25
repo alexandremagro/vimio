@@ -1,5 +1,36 @@
-<nav class="navbar sticky-top navbar-expand navbar-light bg-white">
+<nav id ="titlebar" class="navbar
+                           navbar-expand
+                           navbar-light
+                           bg-white
+                           sticky-top
+                           border-bottom">
   <div class="container">
     <a class="navbar-brand" href=<%= root_path %>>Vimio</a>
+
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <%= link_to current_user.name,
+                      'javascript:;',
+                      class: 'nav-link dropdown-toggle',
+                      data: { toggle: "dropdown" },
+                      id: 'user-menu' %>
+          <div class="dropdown-menu dropdown-menu-right">
+            <%= link_to "Edit account",
+                        edit_user_registration_path,
+                        class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Log out",
+                        destroy_user_session_path,
+                        class: 'dropdown-item',
+                        method: 'delete' %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </nav>

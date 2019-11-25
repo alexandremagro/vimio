@@ -1,0 +1,26 @@
+<div class="container container-sm my-5">
+  <header class="text-center mb-3">
+    <h2>Sign in</h2>
+  </header>
+
+  <div class="card">
+    <div class="card-body">
+      <%= simple_form_for(resource,
+                          as: resource_name,
+                          url: session_path(resource_name)) do |f| %>
+        <%= render "devise/sessions/alerts" %>
+
+        <div class="vertical-input-group">
+          <%= f.input :email, placeholder: "E-mail", label: false %>
+          <%= f.input :password, placeholder: "Password", label: false %>
+        </div>
+        <%= f.input :remember_me, as: :hidden, input_html: { value: '1' } %>
+        <%= f.button :submit, "Log in", class: 'btn-primary btn-block mt-4 shadow' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

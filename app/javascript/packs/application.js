@@ -1,8 +1,3 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-
 require('@rails/ujs').start()
 require('turbolinks').start()
 require('@rails/activestorage').start()
@@ -15,3 +10,16 @@ require('bootstrap/dist/js/bootstrap')
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+document.addEventListener('DOMContentLoaded', function () {
+  const parent = document.getElementById('page-alerts')
+
+  if (parent) {
+    parent.querySelectorAll('.page-alert').forEach(function (alert, i) {
+      setTimeout(
+        function () { parent.removeChild(alert) },
+        4000 + (50 * i)
+      )
+    })
+  }
+})
