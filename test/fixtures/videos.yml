@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Folsom Prison Blues
+  url: https://example.com/videos/1.m3u8
+  user: johnny
+
+two:
+  name: I Walk the Line
+  url: https://example.com/videos/2.m3u8
+  user: johnny
