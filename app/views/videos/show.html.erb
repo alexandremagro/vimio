@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-md-9">
+    <!-- Player -->
     <div class="embed-responsive embed-responsive-16by9 mb-4" href="#">
       <video class="video-js video-player embed-responsive-item mb-2"
       autoplay
@@ -10,14 +11,14 @@
       <source src="<%= @video.url %>" type="application/x-mpegURL">
       </video>
     </div>
-    <div class="row">
-      <div class="col">
-        <h1 class="h5 mb-2"><%= @video.name %></h1>
-      </div>
-      <div class="col-auto text-muted">
-        by <%= @video.user_name %>
-      </div>
-    </div>
+
+    <!-- Heading -->
+    <header class="d-flex mb-2">
+      <h1 class="h5 flex-fill"><%= @video.name %></h1>
+      <span class="text-muted">by <%= @video.user_name %></span>
+    </header>
+
+    <!-- Description -->
     <p class="text-muted">
       <span id="view-count"></span>
       &middot;

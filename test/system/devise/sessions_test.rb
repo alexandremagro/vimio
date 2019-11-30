@@ -28,7 +28,7 @@ class SessionsTest < ApplicationSystemTestCase
     within(Selectors::TITLEBAR) { click_link 'Sign in' }
     within(Selectors::MAIN_CONTENT) do
       fill_in "user_email", with: @user.email
-      fill_in "user_password", with: Const::USER_PASSWORD + '_WRONG'
+      fill_in "user_password", with: Const::USER_PASSWORD.reverse
       click_button "Log in"
 
       assert_text 'Invalid Email or password.'

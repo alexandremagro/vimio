@@ -11,7 +11,7 @@ class VideosTest < ApplicationSystemTestCase
     visit videos_url
 
     within(Selectors::MAIN_CONTENT) do
-      assert_selector "h6", text: @video.name
+      assert_selector Selectors::VIDEO_PREVIEW_TITLE, text: @video.name
     end
   end
 
@@ -20,16 +20,17 @@ class VideosTest < ApplicationSystemTestCase
   test "can watch an video" do
     visit video_url(@video)
 
-    assert_selector "h1", text: @video.name
+    assert_selector Selectors::VIDEO_TITLE, text: @video.name
   end
 
   # view
 
   test "can increment view count" do
-    assert_difference -> { @video.reload.view_count } do
+    assert_difference "@video.reload.view_count" do
       visit video_url(@video)
 
-      assert_selector "h1", text: @video.name
+      assert_selector Selectors::VIDEO_TITLE, text: @video.name
+      assert_text @video.view_count + 1
     end
   end
 end

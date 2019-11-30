@@ -1,3 +1,4 @@
+# Public actions for Videos
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :view]
 

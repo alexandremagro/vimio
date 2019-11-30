@@ -12,7 +12,7 @@ class SessionsTest < ApplicationSystemTestCase
   # create
 
   test "can request an reset password instructions email" do
-    assert_difference -> { ActionMailer::Base.deliveries.size } do
+    assert_difference "ActionMailer::Base.deliveries.size" do
       request_reset_password(@user.email)
     end
   end
@@ -24,8 +24,8 @@ class SessionsTest < ApplicationSystemTestCase
     visit last_email_link("Change my password")
 
     assert_changes -> { @user.reload.encrypted_password } do
-      fill_in "New password", with: "NEW_PASSWORD"
-      fill_in "Confirm new password", with: "NEW_PASSWORD"
+      fill_in "New password", with: Const::USER_PASSWORD.reverse
+      fill_in "Confirm new password", with: Const::USER_PASSWORD.reverse
       click_button "Change my password"
 
       assert_text t('devise.passwords.updated')

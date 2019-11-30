@@ -11,7 +11,7 @@
     <% end %>
 
     <!-- main content -->
-    <main class="card">
+    <div class="card">
       <% if content_for? :card_header %>
         <div class="card-header">
           <%= yield :card_header %>
@@ -21,7 +21,7 @@
       <div class="card-body">
         <%= yield %>
       </div>
-    </main>
+    </div>
   </main>
 <% end %>
 

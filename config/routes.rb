@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :videos, only: [:index, :show] do
     post "view", on: :member
   end
+
+  namespace :user do
+    resources :videos, except: [:show]
+  end
 end

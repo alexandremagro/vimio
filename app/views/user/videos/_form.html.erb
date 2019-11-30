@@ -1,0 +1,7 @@
+<div class="container-sm">
+  <%= simple_form_for([:user, video]) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :url %>
+    <%= f.button :submit, class: "btn-primary" %>
+  <% end %>
+</div>

@@ -48,30 +48,36 @@ class RegistrationsTest < ApplicationSystemTestCase
 
   test "can update account infos" do
     login_as @user
-    visit_edit_account
+    visit_settings
 
-    fill_in "Name", with: "Anonymous"
-    select 'January', from: 'user_birthdate_2i'
-    select '1', from: 'user_birthdate_3i'
-    select '1990', from: 'user_birthdate_1i'
-    choose 'Not applicable'
-    fill_in "Current password", with: Const::USER_PASSWORD
-    click_button "Save changes"
+    assert_changes "@user.name" do
+      assert_changes "@user.birthdate" do
+        assert_changes "@user.reload.gender" do
+          # name
+          fill_in "Name", with: "Anonymous"
 
-    @user.reload
+          # birthdate
+          select 'January', from: 'user_birthdate_2i'
+          select '1', from: 'user_birthdate_3i'
+          select '1990', from: 'user_birthdate_1i'
 
-    assert_equal "Anonymous", @user.name
-    assert_equal Date.new(1990, 1, 1), @user.birthdate
-    assert_equal 9, @user.gender
+          # gender
+          choose 'Not applicable'
+
+          fill_in "Current password", with: Const::USER_PASSWORD
+          click_button "Save changes"
+        end
+      end
+    end
   end
 
   test "can update password" do
     login_as @user
-    visit_edit_account
+    visit_settings
 
-    assert_changes -> { @user.reload.encrypted_password } do
-      fill_in "Password", with: "NEW_PASSWORD"
-      fill_in "Password confirmation", with: "NEW_PASSWORD"
+    assert_changes "@user.reload.encrypted_password" do
+      fill_in "Password", with: Const::USER_PASSWORD.reverse
+      fill_in "Password confirmation", with: Const::USER_PASSWORD.reverse
       fill_in "Current password", with: Const::USER_PASSWORD
       click_button "Save changes"
     end
@@ -79,13 +85,15 @@ class RegistrationsTest < ApplicationSystemTestCase
 
   test "cannot update account without current password" do
     login_as @user
-    visit_edit_account
+    visit_settings
 
-    fill_in "Name", with: "Anonymous"
-    click_button "Save changes"
+    assert_no_changes "@user.reload.name" do
+      fill_in "Name", with: "Anonymous"
+      click_button "Save changes"
 
-    assert_selector Selectors::INVALID_FEEDBACK,
-                    text: "Current password can't be blank"
+      assert_selector Selectors::INVALID_FEEDBACK,
+                      text: "Current password can't be blank"
+    end
   end
 
   # destroy
@@ -96,7 +104,7 @@ class RegistrationsTest < ApplicationSystemTestCase
                         password: Const::USER_PASSWORD
 
     login_as user
-    visit_edit_account
+    visit_settings
 
     click_link "Cancel account"
     accept_confirm do
@@ -115,11 +123,11 @@ class RegistrationsTest < ApplicationSystemTestCase
     within(Selectors::MAIN_CONTENT) { click_link "Create an account" }
   end
 
-  def visit_edit_account
+  def visit_settings
     visit root_path
     within(Selectors::TITLEBAR) do
-      find(:css, Selectors::USER_MENU).click
-      click_link "Edit account"
+      find(Selectors::USER_MENU).click
+      click_link "Settings"
     end
   end
 
