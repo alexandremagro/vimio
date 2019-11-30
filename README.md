@@ -41,8 +41,19 @@ rails s
 
 ### Running the tests
 
+Lint code:
+```
+rubocop
+```
+
+Unit test:
 ```
 rails test
+```
+
+Acceptance test:
+```
+rails test:system
 ```
 
 ## Authors

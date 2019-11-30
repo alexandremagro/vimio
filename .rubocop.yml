@@ -1,0 +1,9 @@
+require:
+  - rubocop-airbnb
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - node_modules/**/*

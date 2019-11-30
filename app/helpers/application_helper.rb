@@ -14,10 +14,10 @@ module ApplicationHelper
     end
   end
 
-  def breadcrumb_item(name, link = nil)
-    if link
+  def breadcrumb_item(name, to: nil)
+    if to
       content_tag :li, class: 'breadcrumb-item' do
-        link_to(name, link)
+        link_to(name, to)
       end
     else
       content_tag :li, name, class: 'breadcrumb-item active'

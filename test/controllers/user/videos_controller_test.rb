@@ -34,8 +34,8 @@ class User::VideosControllerTest < ActionDispatch::IntegrationTest
       post user_videos_path, params: {
         video: {
           name: "Hurt",
-          url: Const::VIDEO_URL
-        }
+          url: Const::VIDEO_URL,
+        },
       }
     end
   end
@@ -53,8 +53,8 @@ class User::VideosControllerTest < ActionDispatch::IntegrationTest
     assert_changes '@video.reload.name' do
       put user_video_path(@video), params: {
         video: {
-          name: @video.name.upcase
-        }
+          name: @video.name.upcase,
+        },
       }
     end
   end
@@ -63,8 +63,8 @@ class User::VideosControllerTest < ActionDispatch::IntegrationTest
     assert_no_changes '@someone_else_video.reload.name' do
       put user_video_path(@someone_else_video), params: {
         video: {
-          name: @someone_else_video.name.upcase
-        }
+          name: @someone_else_video.name.upcase,
+        },
       }
 
       assert_response :not_found
