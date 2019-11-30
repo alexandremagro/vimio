@@ -1,0 +1,27 @@
+<% content_for :breadcrumb do %>
+  <%= breadcrumb_item current_user.name %>
+  <%= breadcrumb_item "Videos" %>
+<% end %>
+
+<header class="d-flex mb-4">
+  <h1 class="h5 flex-fill">My videos</h1>
+  <%= link_to "New video",
+              new_user_video_path,
+              class: "btn btn-primary btn-sm" %>
+</header>
+
+<div class="row">
+  <% @videos.each do |video| %>
+    <%= render "videos/preview", video: video do %>
+      <%= link_to "Edit",
+                  edit_user_video_path(video),
+                  id: "edit-video-#{video.id}" %>
+      &middot;
+      <%= link_to "Delete",
+                  user_video_path(video),
+                  id: "delete-video-#{video.id}",
+                  data: { confirm: "Are you sure?" },
+                  method: :delete %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,7 +1,9 @@
 <% content_for :content do %>
   <%= render 'layouts/alerts' %>
   <main>
-    <%= yield %>
+    <div class="container my-5">
+      <%= yield %>
+    </div>
   </main>
 <% end %>
 

@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :videos
+
   validates :name, presence: true
   validate :birthdate_must_be_past
 

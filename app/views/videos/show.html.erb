@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-9">
+    <!-- Player -->
+    <div class="embed-responsive embed-responsive-16by9 mb-4" href="#">
+      <video class="video-js video-player embed-responsive-item mb-2"
+      autoplay
+      controls
+      preload="auto"
+      height="200"
+      data-id="<%= @video.id %>">
+      <source src="<%= @video.url %>" type="application/x-mpegURL">
+      </video>
+    </div>
+
+    <!-- Heading -->
+    <header class="d-flex mb-2">
+      <h1 class="h5 flex-fill"><%= @video.name %></h1>
+      <span class="text-muted">by <%= @video.user_name %></span>
+    </header>
+
+    <!-- Description -->
+    <p class="text-muted">
+      <span id="view-count"></span>
+      &middot;
+      <%= l @video.created_at.to_date, format: :long %>
+    </p>
+  </div>
+</div>
